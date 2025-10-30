@@ -50,6 +50,7 @@ void main() {
       group('when the request is OPTIONS', () {
         setUp(() async {
           when(() => request.method).thenReturn(HttpMethod.options);
+          when(() => request.headers).thenReturn(const {});
           when(() => context.request).thenReturn(request);
 
           result = await cors()(handler)(context);
@@ -83,6 +84,7 @@ void main() {
           when(() => response.copyWith(headers: captureAny(named: 'headers')))
               .thenReturn(response);
           when(() => response.headers).thenReturn(const {});
+          when(() => request.headers).thenReturn(const {});
           when(() => request.method).thenReturn(HttpMethod.get);
           when(() => context.request).thenReturn(request);
 
